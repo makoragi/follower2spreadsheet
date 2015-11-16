@@ -45,7 +45,7 @@ function create_sheet_obj() {
 	//var credentials = require(process.env.googleJsonPath);
 	var credentials = {
 		client_email: process.env.googleClientEmail,
-		private_key: process.env.googlePrivateKey
+		private_key: process.env.googlePrivateKey.replace(/\\n/g,"\n")
 	};
 	//console.log(credentials.client_email);
 	//console.log(credentials.private_key);
