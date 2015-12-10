@@ -1,3 +1,8 @@
+var dbg = (process.env.debug == 1) || false;
+if (dbg) {
+	console.log("--- debug mode ---");
+}
+
 var express = require('express');
 var router = express.Router();
 
@@ -76,13 +81,17 @@ function get_profile() {
 }
 
 function post_spreadsheet(data) {
-	My_sheet.addRow(1, {
-		'date': get_date_now(),
-		'followers_count': data.followers_count,
-		'friends_count': data.friends_count,
-		'favourites_count': data.favourites_count,
-		'statuses_count': data.statuses_count
-	});
+	if (dbg) {
+		console.log(data.followers_count);
+	} else {
+		My_sheet.addRow(1, {
+			'date': get_date_now(),
+			'followers_count': data.followers_count,
+			'friends_count': data.friends_count,
+			'favourites_count': data.favourites_count,
+			'statuses_count': data.statuses_count
+		});
+	}
 }
 
 function get_time_now() {
